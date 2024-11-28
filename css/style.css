@@ -31,6 +31,13 @@ button {
     gap: 10px;
 }
 
+.eraser{
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 10%;
+}
+
 .color-circle {
     width: 40px;
     height: 40px;
@@ -43,7 +50,10 @@ button {
     margin: 0 10px;
 }
 
-#line-brush:hover {
-    background-color: blueviolet;
-    
+#line-brush {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+#circle-brush {
+    background-color: rgba(255, 255, 255, 0.5);
 }

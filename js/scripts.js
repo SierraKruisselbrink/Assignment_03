@@ -15,6 +15,12 @@ class Brush {
     }
 
     draw(ctx, x, y) {
+        if (this.brushType ==='eraser') {
+            ctx.lineWidth = this.size;
+            ctx.strokeStyle = '#FFFFFF';
+            ctx.lineTo(x, y);
+            ctx.stroke();
+        } else {
         ctx.fillStyle = this.color;
         if (this.brushType === 'line') {
             ctx.lineWidth = this.size;
@@ -27,6 +33,7 @@ class Brush {
             ctx.fill();
         }
     }
+}
 }
 
 // Get the canvas and context
@@ -49,7 +56,6 @@ window.addEventListener('resize', resizeCanvas);
 
 // Default brush settings
 let currentBrush = new Brush('line', 10, '#000000');
-console.log(currentBrush.color);
 let isDrawing = false;
 
 // Get UI elements
@@ -60,6 +66,8 @@ const increaseSizeButton = document.getElementById('increase-size');
 const lineBrushButton = document.getElementById('line-brush');
 const circleBrushButton = document.getElementById('circle-brush');
 const clearCanvasButton = document.getElementById('clear-canvas');
+const eraserBrushButton = document.getElementById('eraser-brush');
+
 
 // Update brush size
 decreaseSizeButton.addEventListener('click', () => {
@@ -92,6 +100,22 @@ circleBrushButton.addEventListener('click', () => {
     currentBrush = new Brush('circle', currentBrush.size, currentBrush.color);
 });
 
+eraserBrushButton.addEventListener('click', () => {
+    handleButtonClick(eraserBrushButton);
+    currentBrush = new Brush('eraser', currentBrush.size, '#FFFFFF'); // Assuming white background
+});
+
+
+function handleButtonClick(button) {
+    // Remove 'active' class from all buttons
+    document.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+    // Add 'active' class to the clicked button
+    button.classList.add('active');
+}
+
+
+
+
 // Start drawing when mouse is pressed down
 canvas.addEventListener('mousedown', (e) => {
     isDrawing = true;
@@ -116,7 +140,31 @@ canvas.addEventListener('mouseout', () => {
     isDrawing = false;
 });
 
-// // Clear Canvas button
+// Clear Canvas button
 clearCanvasButton.addEventListener("click", () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 })
+
+$("#line-brush").click(function () {
+    $("#line-brush").css("background-color", "rgba(255, 0, 0, 0.5)");
+    $("#circle-brush").css("background-color", "rgba(0, 0, 0, 0)");
+    $("#eraser-brush").css("background-color", "rgba(0, 0, 0, 0)");
+});
+
+$("#circle-brush").click(function () {
+    $("#circle-brush").css("background-color", "rgba(255, 0, 0, 0.5)");
+    $("#line-brush").css("background-color", "rgba(0, 0, 0, 0)");
+    $("#eraser-brush").css("background-color", "rgba(0, 0, 0, 0)");
+});
+
+$("#eraser-brush").click(function () {
+    $("#eraser-brush").css("background-color", "rgba(255, 0, 0, 0.5)");
+    $("#line-brush").css("background-color", "rgba(0, 0, 0, 0)");
+    $("#circle-brush").css("background-color", "rgba(0, 0, 0, 0)");
+});
+
+//Eraser Button
+eraserBrushButton.addEventListener('click', () => {
+    handleButtonClick(eraserBrushButton);
+    currentBrush = new Brush('eraser', currentBrush.size, '#FFFFFF'); // Assuming white background
+});

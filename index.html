@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Drawing Canvas</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="controls">
+        <button id="decrease-size">-</button>
+        <span id="brush-size-value">10</span>
+        <button id="increase-size">+</button>
+        <button id="line-brush">Line Brush</button>
+        <button id="circle-brush">Circle Brush</button>
+        <button id="clear-canvas">Clear Canvas</button>
+    </div>
+
+    <canvas id="drawing-canvas"></canvas>
+
+    <div class="color-palette">
+        <div class="color-circle" style="background-color: red;" data-color="red"></div>
+        <div class="color-circle" style="background-color: green;" data-color="green"></div>
+        <div class="color-circle" style="background-color: blue;" data-color="blue"></div>
+        <div class="color-circle" style="background-color: yellow;" data-color="yellow"></div>
+    </div>
+
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>

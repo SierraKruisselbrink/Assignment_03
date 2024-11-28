@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.controls {
+    margin-bottom: 10px;
+}
+
+canvas {
+    border: 2px solid black;
+    cursor: crosshair;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 10%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.color-palette {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.color-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 5%;
+    cursor: pointer;
+    border: 1px solid #000;
+}
+
+#brush-size-value {
+    margin: 0 10px;
+}
+
+#line-brush:hover {
+    background-color: blueviolet;
+    
+}

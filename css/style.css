@@ -9,7 +9,7 @@ body {
 }
 
 .controls {
-    margin-bottom: 10px;
+    margin: 10px;
 }
 
 canvas {
@@ -28,7 +28,8 @@ button {
 .color-palette {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 5px;
+    padding: 5px;
 }
 
 .eraser{

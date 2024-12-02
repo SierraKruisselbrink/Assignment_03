@@ -5,61 +5,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Drawing Canvas</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/> <!-- 'classic' theme -->
-    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5.5.4/dist/iro.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
+    <!-- 'classic' theme -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5.5.4/dist/iro.min.js"></script> -->
     <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 
 <body>
-    <div id="colorPicker"></div>
-
-
-
-
-
-    <div class="color-picker"></div>
-    <canvas id="drawing-canvas"></canvas>
-
-
-    <div class="color-palette">
-        <div class="color-circle" style="background-color: red;" data-color="red"></div>
-        <div class="color-circle" style="background-color: rgb(255, 149, 0);" data-color="rgb(255, 69, 0)"></div>
-        <div class="color-circle" style="background-color: rgb(255, 140, 0);" data-color="rgb(255, 140, 0)"></div>
-        <div class="color-circle" style="background-color: rgb(255, 225, 0);" data-color="rgb(255, 225, 0)"></div>
-        <div class="color-circle" style="background-color: rgb(3, 193, 0);" data-color="rgb(3, 193, 0)"></div>
-        <div class="color-circle" style="background-color: rgb(0, 194, 120);" data-color="rgb(0, 194, 120)"></div>
-        <div class="color-circle" style="background-color: rgb(0, 11, 227);" data-color="rgb(0, 11, 227)"></div>
-        <div class="color-circle" style="background-color: rgb(160, 0, 223);" data-color="rgb(160, 0, 223)"></div>
-        <div class="color-circle" style="background-color: darkmagenta;" data-color="darkmagenta"></div>
-        <div class="color-circle" style="background-color: rgb(249, 0, 153);" data-color="rgb(249, 0, 153)"></div>
-        <div class="color-circle" style="background-color: rgb(255, 125, 151);" data-color="rgb(255, 125, 151)"></div>
-        <div class="color-circle" style="background-color: rgb(142, 142, 142);" data-color="rgb(142, 142, 142)"></div>
+    <div class="container">
+        <div class="themes"> 
+            <div class="light">
+                <button id="light-theme">Light Theme</button> 
+            </div>
+            <div class="dark">
+                <button id="dark-theme">Dark Theme</button>
+            </div>
+        </div>
+        <div class="drawing-canvas-container">
+        <canvas id="drawing-canvas"></canvas>
+        </div>
     </div>
 
-    <div class="color-palette">
-        <div class="color-circle" style="background-color: rgb(130, 78, 0);" data-color="rgb(130, 78, 0)"></div>
-        <div class="color-circle" style="background-color: rgb(169, 112, 0);" data-color="rgb(169, 112, 0)"></div>
-        <div class="color-circle" style="background-color: rgb(250, 184, 104);" data-color="rgb(250, 184, 104)"></div>
-        <div class="color-circle" style="background-color: rgb(255, 232, 99);" data-color="rgb(255, 232, 99)"></div>
-        <div class="color-circle" style="background-color: rgb(87, 255, 87);" data-color="rgb(87, 255, 87)"></div>
-        <div class="color-circle" style="background-color: rgb(0, 249, 158);" data-color="rgb(0, 249, 158)"></div>
-        <div class="color-circle" style="background-color: rgb(31, 128, 255);" data-color="rgb(31, 128, 255)"></div>
-        <div class="color-circle" style="background-color: rgb(205, 136, 251);" data-color="rgb(205, 136, 251)"></div>
-        <div class="color-circle" style="background-color: rgb(183, 90, 200);" data-color="rgb(183, 90, 200)"></div>
-        <div class="color-circle" style="background-color: rgb(255, 110, 195);" data-color="rgb(255, 110, 195)"></div>
-        <div class="color-circle" style="background-color: pink;" data-color="pink"></div>
-        <div class="color-circle" style="background-color: rgb(0, 0, 0);" data-color="black"></div>
-    </div>
-    <div class="controls">
-        <button id="decrease-size">-</button>
-        <span id="brush-size-value">10</span>
-        <button id="increase-size">+</button>
-        <button id="line-brush">Line Brush</button>
-        <button id="circle-brush">Circle Brush</button>
-        <button id="clear-canvas">Clear Canvas</button>
-        <button id="eraser-brush">Eraser</button>
+    <div class="container">
+        <button id="eraser-brush"></button>
+        <div class="color-palette-container">
+            <div class="color-palette">
+                <div class="color-circle" style="background-color: red;" data-color="red"></div>
+                <div class="color-circle" style="background-color: rgb(255, 149, 0);" data-color="rgb(255, 69, 0)"></div>
+                <div class="color-circle" style="background-color: rgb(255, 140, 0);" data-color="rgb(255, 140, 0)"></div>
+                <div class="color-circle" style="background-color: rgb(255, 225, 0);" data-color="rgb(255, 225, 0)"></div>
+                <div class="color-circle" style="background-color: rgb(3, 193, 0);" data-color="rgb(3, 193, 0)"></div>
+                <div class="color-circle" style="background-color: rgb(0, 194, 120);" data-color="rgb(0, 194, 120)"></div>
+                <div class="color-circle" style="background-color: rgb(0, 11, 227);" data-color="rgb(0, 11, 227)"></div>
+                <div class="color-circle" style="background-color: rgb(160, 0, 223);" data-color="rgb(160, 0, 223)"></div>
+                <div class="color-circle" style="background-color: darkmagenta;" data-color="darkmagenta"></div>
+                <div class="color-circle" style="background-color: rgb(249, 0, 153);" data-color="rgb(249, 0, 153)"></div>
+                <div class="color-circle" style="background-color: rgb(255, 125, 151);" data-color="rgb(255, 125, 151)"></div>
+                <div class="color-circle" style="background-color: rgb(142, 142, 142);" data-color="rgb(142, 142, 142)"></div>
+            </div>
+
+            <div class="color-palette">
+                <div class="color-circle" style="background-color: rgb(130, 78, 0);" data-color="rgb(130, 78, 0)"></div>
+                <div class="color-circle" style="background-color: rgb(169, 112, 0);" data-color="rgb(169, 112, 0)"></div>
+                <div class="color-circle" style="background-color: rgb(250, 184, 104);" data-color="rgb(250, 184, 104)"></div>
+                <div class="color-circle" style="background-color: rgb(255, 232, 99);" data-color="rgb(255, 232, 99)"></div>
+                <div class="color-circle" style="background-color: rgb(87, 255, 87);" data-color="rgb(87, 255, 87)"></div>
+                <div class="color-circle" style="background-color: rgb(0, 249, 158);" data-color="rgb(0, 249, 158)"></div>
+                <div class="color-circle" style="background-color: rgb(31, 128, 255);" data-color="rgb(31, 128, 255)"></div>
+                <div class="color-circle" style="background-color: rgb(205, 136, 251);" data-color="rgb(205, 136, 251)"></div>
+                <div class="color-circle" style="background-color: rgb(183, 90, 200);" data-color="rgb(183, 90, 200)"></div>
+                <div class="color-circle" style="background-color: rgb(255, 110, 195);" data-color="rgb(255, 110, 195)"></div>
+                <div class="color-circle" style="background-color: pink;" data-color="pink"></div>
+                <div class="color-circle" style="background-color: rgb(0, 0, 0);" data-color="black"></div>
+            </div>
+        </div>
+
+        <button class="color-picker-button"></button>
+
+        <div class="controls">
+            <button id="decrease-size">-</button>
+            <span id="brush-size-value">10</span>
+            <button id="increase-size">+</button>
+            <button id="line-brush">Line Brush</button>
+            <button id="circle-brush">Circle Brush</button>
+            <button id="clear-canvas">Clear</button>
+
+            <!-- <div class="color-picker"></div> -->
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>

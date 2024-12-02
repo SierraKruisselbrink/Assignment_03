@@ -15,25 +15,25 @@ class Brush {
     }
 
     draw(ctx, x, y) {
-        if (this.brushType ==='eraser') {
+        if (this.brushType === 'eraser') {
             ctx.lineWidth = this.size;
             ctx.strokeStyle = '#FFFFFF';
             ctx.lineTo(x, y);
             ctx.stroke();
         } else {
-        ctx.fillStyle = this.color;
-        if (this.brushType === 'line') {
-            ctx.lineWidth = this.size;
-            ctx.strokeStyle = this.color;
-            ctx.lineTo(x, y);
-            ctx.stroke();
-        } else if (this.brushType === 'circle') {
-            ctx.beginPath();
-            ctx.arc(x, y, this.size / 2, 0, Math.PI * 2);
-            ctx.fill();
+            ctx.fillStyle = this.color;
+            if (this.brushType === 'line') {
+                ctx.lineWidth = this.size;
+                ctx.strokeStyle = this.color;
+                ctx.lineTo(x, y);
+                ctx.stroke();
+            } else if (this.brushType === 'circle') {
+                ctx.beginPath();
+                ctx.arc(x, y, this.size / 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
         }
     }
-}
 }
 
 // Get the canvas and context
@@ -45,7 +45,7 @@ const ctx = canvas.getContext('2d');
 // Set canvas size
 function resizeCanvas() {
     canvas.width = window.innerWidth * .80;
-    canvas.height = window.innerHeight *.75;
+    canvas.height = window.innerHeight * .75;
 }
 
 resizeCanvas();
@@ -67,6 +67,7 @@ const lineBrushButton = document.getElementById('line-brush');
 const circleBrushButton = document.getElementById('circle-brush');
 const clearCanvasButton = document.getElementById('clear-canvas');
 const eraserBrushButton = document.getElementById('eraser-brush');
+
 
 
 // Update brush size
@@ -147,18 +148,20 @@ clearCanvasButton.addEventListener("click", () => {
 
 $("#line-brush").click(function () {
     $("#line-brush").css("background-color", "rgba(255, 0, 0, 0.5)");
-    $("#circle-brush").css("background-color", "rgba(0, 0, 0, 0)");
-    $("#eraser-brush").css("background-color", "rgba(0, 0, 0, 0)");
+    $("#circle-brush").css("background-color", currentBackgroundColor);
+    $("#eraser-brush").css("background-color", currentBackgroundColor);
+    currentBrush = new Brush('line', currentBrush.size, currentBrush.color);
 });
 
 $("#circle-brush").click(function () {
     $("#circle-brush").css("background-color", "rgba(255, 0, 0, 0.5)");
-    $("#line-brush").css("background-color", "rgba(0, 0, 0, 0)");
-    $("#eraser-brush").css("background-color", "rgba(0, 0, 0, 0)");
+    $("#line-brush").css("background-color", currentBackgroundColor);
+    $("#eraser-brush").css("background-color", currentBackgroundColor);
+    currentBrush = new Brush('circle', currentBrush.size, currentBrush.color);
 });
 
 $("#eraser-brush").click(function () {
-    $("#eraser-brush").css("background-color", "rgba(255, 0, 0, 0.5)");
+    $("#eraser-brush").css("background-color", "rgba(0, 0, 0, 0.5)");
     $("#line-brush").css("background-color", "rgba(0, 0, 0, 0)");
     $("#circle-brush").css("background-color", "rgba(0, 0, 0, 0)");
 });
@@ -169,10 +172,18 @@ eraserBrushButton.addEventListener('click', () => {
     currentBrush = new Brush('eraser', currentBrush.size, '#FFFFFF'); // Assuming white background
 });
 
+//dark theme 
+document.getElementById('dark-theme').addEventListener('click', () => {
+    setTheme('currentBackgroundColor');
+});
+
 
 const pickr = Pickr.create({
-    el: '.color-picker',
+    el: '.color-picker-button',
     theme: 'classic', // or 'monolith', or 'nano'
+    default: '#000000',
+    useAsButton: true,
+
 
     swatches: [
         'rgba(244, 67, 54, 1)',
@@ -211,3 +222,37 @@ const pickr = Pickr.create({
         }
     }
 });
+
+pickr.on('save', (color, instance) => {
+    currentBrush.setBrushColor(color.toHEXA().toString());
+    pickr.hide();
+});
+
+document.getElementById('light-theme').addEventListener('click', () => {
+    setTheme('#FFFFFF', '#FFFFFF','#e0e0e0'); 
+});
+
+document.getElementById('dark-theme').addEventListener('click', () => {
+    setTheme('#171717', '#ffffff','#333333');
+});
+
+function setTheme(pageColor, canvasColor, buttonColor) {
+    document.body.style.backgroundColor = pageColor;
+    setCanvasBackgroundColor(canvasColor);
+    setButtonBackgroundColor(buttonColor);
+    currentBackgroundColor = backgroundColor; 
+}
+
+function setCanvasBackgroundColor(color) {
+    const canvas = document.getElementById('drawing-canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = color;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function setButtonBackgroundColor(color) {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+        button.style.backgroundColor = color;
+    });
+}

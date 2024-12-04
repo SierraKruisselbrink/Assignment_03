@@ -83,9 +83,7 @@ function setTheme(pageColor, canvasColor, buttonColor) {
 }
 
 function handleThemeButtonClick(button) {
-    // Remove 'active' class from all theme buttons
     document.querySelectorAll('.theme-button').forEach(btn => btn.classList.remove('active'));
-    // Add 'active' class to the clicked button
     button.classList.add('active');
 }
 
@@ -112,6 +110,12 @@ lightThemeButton.addEventListener('click', () => {
     restoreOriginalColors();
     document.querySelector('.color-palette-container').classList.remove('christmas-palette');
     handleThemeButtonClick(lightThemeButton);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('light-mode');
+    handleThemeButtonClick(lightThemeButton);
+    handleButtonClick(lineBrushButton);
 });
 
 // Toggle dark mode
@@ -218,7 +222,7 @@ const pickr = Pickr.create({
             hsva: false,
             cmyk: false,
             input: true,
-            clear: true,
+            clear: false,
             save: true
         }
     }

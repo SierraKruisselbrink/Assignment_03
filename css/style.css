@@ -102,12 +102,12 @@ body.dark-mode canvas {
 }
 
 .active-eraser {
-    background: red url('../images/Untitled-3.png') no-repeat center center !important;
+    background: #5EA2A7 url('../images/Untitled-3.png') no-repeat center center !important;
     background-size: cover !important;
 }
 
 .active {
-    background-color: red;
+    background-color: #5EA2A7;
 }
 
 body.christmas-theme {
@@ -116,3 +116,13 @@ body.christmas-theme {
    
 }
 
+body.christmas-theme .color-palette-container {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.theme-button.active {
+    background-color: #5EA2A7;
+
+}

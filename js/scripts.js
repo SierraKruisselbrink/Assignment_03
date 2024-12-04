@@ -1,4 +1,7 @@
 // Create a class for Brush
+var backgroundLightMode = '#FFFFFF';
+var backgroundDarkMode = '#171717';
+
 class Brush {
     constructor(brushType, size, newColor) {
         this.brushType = brushType; // 'line' or 'circle'
@@ -67,7 +70,20 @@ const lineBrushButton = document.getElementById('line-brush');
 const circleBrushButton = document.getElementById('circle-brush');
 const clearCanvasButton = document.getElementById('clear-canvas');
 const eraserBrushButton = document.getElementById('eraser-brush');
+const lightThemeButton = document.getElementById('light-theme');
+const darkThemeButton = document.getElementById('dark-theme');
 
+// Toggle light mode
+lightThemeButton.addEventListener('click', () => {
+    document.body.classList.remove('dark-mode');
+    document.body.classList.add('light-mode');
+});
+
+// Toggle dark mode
+darkThemeButton.addEventListener('click', () => {
+    document.body.classList.remove('light-mode');
+    document.body.classList.add('dark-mode');
+});
 
 
 // Update brush size
@@ -94,24 +110,32 @@ colorCircles.forEach(circle => {
 
 // Toggle between brushes
 lineBrushButton.addEventListener('click', () => {
+    handleButtonClick(this);
     currentBrush = new Brush('line', currentBrush.size, currentBrush.color);
 });
 
 circleBrushButton.addEventListener('click', () => {
+    handleButtonClick(this);
     currentBrush = new Brush('circle', currentBrush.size, currentBrush.color);
 });
 
-eraserBrushButton.addEventListener('click', () => {
-    handleButtonClick(eraserBrushButton);
-    currentBrush = new Brush('eraser', currentBrush.size, '#FFFFFF'); // Assuming white background
-});
+// eraserBrushButton.addEventListener('click', () => {
+//     handleButtonClick(eraserBrushButton);
+//     currentBrush = new Brush('eraser', currentBrush.size, '#FFFFFF'); // Assuming white background
+// });
 
 
 function handleButtonClick(button) {
     // Remove 'active' class from all buttons
-    document.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+    $('.brush-button').removeClass('active');
+    $('.brush-button').removeClass('active-eraser');
     // Add 'active' class to the clicked button
-    button.classList.add('active');
+
+    if (button.id === 'eraser-brush') {
+        $(button).addClass('active-eraser');
+    } else {
+        $(button).addClass('active');
+    }
 }
 
 
@@ -146,35 +170,15 @@ clearCanvasButton.addEventListener("click", () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 })
 
-$("#line-brush").click(function () {
-    $("#line-brush").css("background-color", "rgba(255, 0, 0, 0.5)");
-    $("#circle-brush").css("background-color", currentBackgroundColor);
-    $("#eraser-brush").css("background-color", currentBackgroundColor);
-    currentBrush = new Brush('line', currentBrush.size, currentBrush.color);
-});
 
-$("#circle-brush").click(function () {
-    $("#circle-brush").css("background-color", "rgba(255, 0, 0, 0.5)");
-    $("#line-brush").css("background-color", currentBackgroundColor);
-    $("#eraser-brush").css("background-color", currentBackgroundColor);
-    currentBrush = new Brush('circle', currentBrush.size, currentBrush.color);
-});
 
-$("#eraser-brush").click(function () {
-    $("#eraser-brush").css("background-color", "rgba(0, 0, 0, 0.5)");
-    $("#line-brush").css("background-color", "rgba(0, 0, 0, 0)");
-    $("#circle-brush").css("background-color", "rgba(0, 0, 0, 0)");
-});
+
+
 
 //Eraser Button
 eraserBrushButton.addEventListener('click', () => {
     handleButtonClick(eraserBrushButton);
     currentBrush = new Brush('eraser', currentBrush.size, '#FFFFFF'); // Assuming white background
-});
-
-//dark theme 
-document.getElementById('dark-theme').addEventListener('click', () => {
-    setTheme('currentBackgroundColor');
 });
 
 
@@ -223,24 +227,32 @@ const pickr = Pickr.create({
     }
 });
 
+// Add event listeners to brush buttons
+$('.brush-button').click(function () {
+    handleButtonClick(this);
+});
+
+// Add event listener to eraser button
+$('#eraser-brush').click(function () {
+    handleButtonClick(this);
+    // currentBrush = new Brush('eraser', currentBrush.size, '#FFFFFF'); // Assuming white background
+});
+
+// Clear Canvas button
+$('#clear-canvas').click(function () {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
+
 pickr.on('save', (color, instance) => {
     currentBrush.setBrushColor(color.toHEXA().toString());
     pickr.hide();
-});
-
-document.getElementById('light-theme').addEventListener('click', () => {
-    setTheme('#FFFFFF', '#FFFFFF','#e0e0e0'); 
-});
-
-document.getElementById('dark-theme').addEventListener('click', () => {
-    setTheme('#171717', '#ffffff','#333333');
 });
 
 function setTheme(pageColor, canvasColor, buttonColor) {
     document.body.style.backgroundColor = pageColor;
     setCanvasBackgroundColor(canvasColor);
     setButtonBackgroundColor(buttonColor);
-    currentBackgroundColor = backgroundColor; 
+    currentBackgroundColor = backgroundColor;
 }
 
 function setCanvasBackgroundColor(color) {

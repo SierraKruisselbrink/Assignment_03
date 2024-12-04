@@ -19,7 +19,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 5px;
-
 }
 
 .controls {
@@ -27,6 +26,8 @@ body {
 }
 
 canvas {
+    background-color: white;
+    /* Ensure canvas stays white */
     border: 2px solid black;
     cursor: crosshair;
     margin-bottom: 20px;
@@ -64,10 +65,6 @@ button {
     margin: 0 10px;
 }
 
-#line-brush {
-    background-color: rgba(255, 0, 0, 0.5);
-}
-
 .color-picker {
     margin-top: 10px;
 }
@@ -92,4 +89,23 @@ button {
     cursor: pointer;
     margin-top: 20px;
     margin-left: 10px;
+}
+
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-mode canvas {
+    background-color: white;
+    /* Ensure canvas stays white */
+}
+
+.active-eraser {
+    background: red url('../images/Untitled-3.png') no-repeat center center !important;
+    background-size: cover !important;
+}
+
+.active {
+    background-color: red;
 }

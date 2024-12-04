@@ -106,6 +106,7 @@ function handleButtonClick(button) {
 lightThemeButton.addEventListener('click', () => {
     document.body.classList.remove('dark-mode');
     document.body.classList.remove('christmas-theme');
+    document.body.classList.remove('underwater-theme');
     document.body.classList.add('light-mode');
     restoreOriginalColors();
     document.querySelector('.color-palette-container').classList.remove('christmas-palette');
@@ -122,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 darkThemeButton.addEventListener('click', () => {
     document.body.classList.remove('light-mode');
     document.body.classList.remove('christmas-theme');
+    document.body.classList.remove('underwater-theme');
     document.body.classList.add('dark-mode');
     restoreOriginalColors();
     document.querySelector('.color-palette-container').classList.remove('christmas-palette');
@@ -251,6 +253,7 @@ $('#eraser-brush').click(function () {
 document.getElementById('christmas-theme').addEventListener('click', () => {
     document.body.classList.remove('light-mode');
     document.body.classList.remove('dark-mode');
+    document.body.classList.remove('underwater-theme');
     document.body.classList.add('christmas-theme');
     const colorCircles = document.querySelectorAll('.color-circle');
     colorCircles.forEach((circle, index) => {
@@ -309,4 +312,60 @@ const christmasColors = [
 const originalColors = [];
 document.querySelectorAll('.color-circle').forEach(circle => {
     originalColors.push(circle.style.backgroundColor);
+});
+
+
+// Ocean theme 
+
+const underwaterColors = [
+    'rgb(0, 51, 102)', // Dark Blue
+    'rgb(0, 76, 153)', // Navy Blue
+    'rgb(0, 102, 204)', // Medium Blue
+    'rgb(0, 105, 148)', // Deep Blue
+    'rgb(0, 153, 255)', // Light Blue
+    'rgb(0, 168, 243)', // Sky Blue
+    'rgb(0, 204, 255)', // Sky Blue
+    'rgb(0, 255, 255)', // Cyan
+    'rgb(0, 255, 204)', // Aqua
+    'rgb(0, 255, 153)', // Mint
+    'rgb(0, 255, 102)', // Sea Green
+    'rgb(0, 255, 51)', // Bright Green
+    'rgb(0, 51, 51)', // Deep Green
+    'rgb(0, 102, 51)', // Forest Green
+    'rgb(0, 128, 128)', // Teal
+    'rgb(0, 153, 102)', // Dark Green
+    'rgb(0, 204, 102)', // Green
+    'rgb(0, 204, 153)', // Light Green
+    'rgb(0, 255, 204)', // Pale Green
+    'rgb(255, 127, 80)', // Coral
+    'rgb(255, 160, 122)', // Light Coral
+    'rgb(255, 182, 193)', // Light Pink
+    'rgb(255, 165, 0)', // Orange
+    'rgb(255, 255, 0)'  // Yellow
+];
+
+document.getElementById('underwater-theme').addEventListener('click', () => {
+    document.body.classList.remove('light-mode');
+    document.body.classList.remove('dark-mode');
+    document.body.classList.remove('christmas-theme');
+    document.body.classList.add('underwater-theme');
+    const colorCircles = document.querySelectorAll('.color-circle');
+    colorCircles.forEach((circle, index) => {
+        circle.style.backgroundColor = underwaterColors[index % underwaterColors.length];
+        circle.dataset.color = underwaterColors[index % underwaterColors.length];
+    });
+    handleThemeButtonClick(document.getElementById('underwater-theme'));
+});
+
+document.getElementById('underwater-theme').addEventListener('click', () => {
+    document.body.classList.remove('light-mode');
+    document.body.classList.remove('dark-mode');
+    document.body.classList.remove('christmas-theme');
+    document.body.classList.add('underwater-theme');
+    const colorCircles = document.querySelectorAll('.color-circle');
+    colorCircles.forEach((circle, index) => {
+        circle.style.backgroundColor = underwaterColors[index % underwaterColors.length];
+        circle.dataset.color = underwaterColors[index % underwaterColors.length];
+    });
+    handleThemeButtonClick(document.getElementById('underwater-theme'));
 });

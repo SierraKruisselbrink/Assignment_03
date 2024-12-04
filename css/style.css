@@ -145,3 +145,16 @@ body.dark-mode .color-palette-container {
     gap: 20px;
     margin: 10px;
 }
+
+body.underwater-theme {
+    background: url('../images/Ocean_01-Tx-2UdhdZ-transformed.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Underwater theme color palette */
+body.underwater-theme .color-palette-container {
+    background-color: rgba(0, 0, 128, 0.5); /* Semi-transparent dark blue */
+    padding: 10px;
+    border-radius: 5px;
+}

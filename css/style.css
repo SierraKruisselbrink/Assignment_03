@@ -111,6 +111,8 @@ body.dark-mode canvas {
 }
 
 body.christmas-theme {
-    background-color: green;
-    color: white;
+    background: url('../images/background_15.webp') no-repeat center center;
+    background-size: cover;
+   
 }
+

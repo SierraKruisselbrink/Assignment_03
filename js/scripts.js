@@ -3,19 +3,33 @@ var backgroundLightMode = '#FFFFFF';
 var backgroundDarkMode = '#171717';
 
 const christmasColors = [
-    'rgb(255, 0, 0)', // Red
-    'rgb(0, 255, 0)', // Green
-    'rgb(255, 255, 255)', // White
-    'rgb(255, 215, 0)', // Gold
-    'rgb(139, 69, 19)', // Brown
-    'rgb(0, 128, 128)', // Teal
-    'rgb(255, 20, 147)', // Pink
-    'rgb(0, 0, 255)', // Blue
-    'rgb(128, 0, 128)', // Purple
-    'rgb(255, 165, 0)', // Orange
-    'rgb(0, 0, 0)', // Black
-    'rgb(192, 192, 192)' // Silver
-];
+    'rgb(48, 42, 10)', // Brown
+    'rgb(98, 22, 34)', // Dark Red
+    'rgb(110, 50, 13)', // Brown
+    'rgb(159, 15, 14)', // Cherry Red 
+    'rgb(201, 40, 30)', // Bright Red 
+    'rgb(154, 49, 72)', // Red
+    'rgb(193, 108, 129)', // Pink
+    'rgb(187, 109, 33)', // Dark Yellow
+    'rgb(179, 111, 64)', // Light Brown
+    'rgb(114, 117, 97)', // Grey
+    'rgb(180, 182, 169)', // Light Grey
+    'rgb(214, 183, 152)', // Beige
+ 
+    'rgb(25, 45, 36)', // Dark Green
+    'rgb(43, 72, 54)', // Green
+    'rgb(55, 88, 57)', // Olive Green 
+    'rgb(31, 81, 32)', // Bright Green
+    'rgb(123, 144, 49)', // Yellow Green
+    'rgb(131, 160, 67)', // Light Green
+    'rgb(68, 126, 150)', // Blue
+    'rgb(107, 146, 163)', // Light Blue
+    'rgb(112, 142, 118)', // Light Blue
+    'rgb(195, 200, 204)', // Light Grey snow
+    'rgb(227, 227, 227)', // Snow
+    'rgb(251, 205, 58)' // Yellow
+ 
+    ];
 
 // Store original colors of color circles
 const originalColors = [];

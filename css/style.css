@@ -109,3 +109,8 @@ body.dark-mode canvas {
 .active {
     background-color: red;
 }
+
+body.christmas-theme {
+    background-color: green;
+    color: white;
+}

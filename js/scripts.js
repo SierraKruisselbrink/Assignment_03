@@ -2,6 +2,29 @@
 var backgroundLightMode = '#FFFFFF';
 var backgroundDarkMode = '#171717';
 
+const christmasColors = [
+    'rgb(255, 0, 0)', // Red
+    'rgb(0, 255, 0)', // Green
+    'rgb(255, 255, 255)', // White
+    'rgb(255, 215, 0)', // Gold
+    'rgb(139, 69, 19)', // Brown
+    'rgb(0, 128, 128)', // Teal
+    'rgb(255, 20, 147)', // Pink
+    'rgb(0, 0, 255)', // Blue
+    'rgb(128, 0, 128)', // Purple
+    'rgb(255, 165, 0)', // Orange
+    'rgb(0, 0, 0)', // Black
+    'rgb(192, 192, 192)' // Silver
+];
+
+// Store original colors of color circles
+const originalColors = [];
+document.querySelectorAll('.color-circle').forEach(circle => {
+    originalColors.push(circle.style.backgroundColor);
+});
+
+
+
 class Brush {
     constructor(brushType, size, newColor) {
         this.brushType = brushType; // 'line' or 'circle'
@@ -76,13 +99,26 @@ const darkThemeButton = document.getElementById('dark-theme');
 // Toggle light mode
 lightThemeButton.addEventListener('click', () => {
     document.body.classList.remove('dark-mode');
+    document.body.classList.remove('christmas-theme');
     document.body.classList.add('light-mode');
+    restoreOriginalColors();
+
 });
+
+function restoreOriginalColors() {
+    const colorCircles = document.querySelectorAll('.color-circle');
+    colorCircles.forEach((circle, index) => {
+        circle.style.backgroundColor = originalColors[index];
+        circle.dataset.color = originalColors[index];
+    });
+}
 
 // Toggle dark mode
 darkThemeButton.addEventListener('click', () => {
     document.body.classList.remove('light-mode');
+    document.body.classList.remove('christmas-theme');
     document.body.classList.add('dark-mode');
+    restoreOriginalColors();
 });
 
 
@@ -254,6 +290,18 @@ function setTheme(pageColor, canvasColor, buttonColor) {
     setButtonBackgroundColor(buttonColor);
     currentBackgroundColor = backgroundColor;
 }
+
+// Christmas theme
+document.getElementById('christmas-theme').addEventListener('click', () => {
+    document.body.classList.remove('light-mode');
+    document.body.classList.remove('dark-mode');
+    document.body.classList.add('christmas-theme');
+    const colorCircles = document.querySelectorAll('.color-circle');
+    colorCircles.forEach((circle, index) => {
+        circle.style.backgroundColor = christmasColors[index % christmasColors.length];
+        circle.dataset.color = christmasColors[index % christmasColors.length];
+    });
+});
 
 function setCanvasBackgroundColor(color) {
     const canvas = document.getElementById('drawing-canvas');

@@ -46,12 +46,15 @@ resizeCanvas();
 
 window.addEventListener('resize', resizeCanvas);
 
-
+// Store original colors of color circles
+const originalColors = [];
+document.querySelectorAll('.color-circle').forEach(circle => {
+    originalColors.push(circle.style.backgroundColor);
+});
 
 // Default brush settings
 let currentBrush = new Brush('line', 10, '#000000');
 let isDrawing = false;
-
 let previousBrushColor = currentBrush.color;
 
 // Get UI elements
@@ -66,9 +69,7 @@ const eraserBrushButton = document.getElementById('eraser-brush');
 const lightThemeButton = document.getElementById('light-theme');
 const darkThemeButton = document.getElementById('dark-theme');
 
-
-
-
+// Restores colors to their origional colors when theme is back to light
 function restoreOriginalColors() {
     const colorCircles = document.querySelectorAll('.color-circle');
     colorCircles.forEach((circle, index) => {
@@ -76,6 +77,8 @@ function restoreOriginalColors() {
         circle.dataset.color = originalColors[index];
     });
 }
+
+//Functions
 
 function setTheme(pageColor, canvasColor, buttonColor) {
     document.body.style.backgroundColor = pageColor;
@@ -103,6 +106,7 @@ function handleButtonClick(button) {
         $(button).addClass('active');
     }
 }
+
 
 // Toggle light mode
 lightThemeButton.addEventListener('click', () => {
@@ -166,7 +170,6 @@ circleBrushButton.addEventListener('click', () => {
     currentBrush = new Brush('circle', currentBrush.size, previousBrushColor);
 });
 
-
 // Start drawing when mouse is pressed down
 canvas.addEventListener('mousedown', (e) => {
     isDrawing = true;
@@ -174,14 +177,14 @@ canvas.addEventListener('mousedown', (e) => {
     ctx.moveTo(e.offsetX, e.offsetY);
 });
 
-// Draw on the canvas when the mouse is moved (if drawing)
+// Draw on the canvas - when the mouse is moved, draw
 canvas.addEventListener('mousemove', (e) => {
     if (isDrawing) {
         currentBrush.draw(ctx, e.offsetX, e.offsetY);
     }
 });
 
-// Stop drawing when the mouse is released
+// Stop drawing if the mouse is released
 canvas.addEventListener('mouseup', () => {
     isDrawing = false;
 });
@@ -196,7 +199,6 @@ clearCanvasButton.addEventListener("click", () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 })
 
-
 //Eraser Button
 eraserBrushButton.addEventListener('click', () => {
     handleButtonClick(eraserBrushButton);
@@ -204,7 +206,7 @@ eraserBrushButton.addEventListener('click', () => {
     currentBrush = new Brush('eraser', currentBrush.size, '#FFFFFF'); // Assuming white background
 });
 
-// Color picker, taken from https://simonwep.github.io/pickr/
+// Color picker, taken from https://simonwep.github.io/pickr/, credit given in footer also 
 const pickr = Pickr.create({
     el: '.color-picker-button',
     theme: 'classic', // or 'monolith', or 'nano'
@@ -219,6 +221,7 @@ const pickr = Pickr.create({
         hue: true,
 
         // Input / output Options
+        // some set to false as they are not needed for the purpose of this project
         interaction: {
             hex: true,
             rgba: true,
@@ -248,10 +251,8 @@ $('#eraser-brush').click(function () {
     handleButtonClick(this);
     });
 
+// Christmas theme componants
 
-
-
-// Christmas theme
 document.getElementById('christmas-theme').addEventListener('click', () => {
     document.body.classList.remove('light-mode');
     document.body.classList.remove('dark-mode');
@@ -280,7 +281,6 @@ function setButtonBackgroundColor(color) {
     });
 }
 
-
 const christmasColors = [
     'rgb(48, 42, 10)', // Brown
     'rgb(98, 22, 34)', // Dark Red
@@ -307,17 +307,35 @@ const christmasColors = [
     'rgb(195, 200, 204)', // Light Grey snow
     'rgb(227, 227, 227)', // Snow
     'rgb(251, 205, 58)' // Yellow
- 
     ];
 
-// Store original colors of color circles
-const originalColors = [];
-document.querySelectorAll('.color-circle').forEach(circle => {
-    originalColors.push(circle.style.backgroundColor);
+// Ocean theme components 
+
+document.getElementById('underwater-theme').addEventListener('click', () => {
+    document.body.classList.remove('light-mode');
+    document.body.classList.remove('dark-mode');
+    document.body.classList.remove('christmas-theme');
+    document.body.classList.add('underwater-theme');
+    const colorCircles = document.querySelectorAll('.color-circle');
+    colorCircles.forEach((circle, index) => {
+        circle.style.backgroundColor = underwaterColors[index % underwaterColors.length];
+        circle.dataset.color = underwaterColors[index % underwaterColors.length];
+    });
+    handleThemeButtonClick(document.getElementById('underwater-theme'));
 });
 
-
-// Ocean theme 
+document.getElementById('underwater-theme').addEventListener('click', () => {
+    document.body.classList.remove('light-mode');
+    document.body.classList.remove('dark-mode');
+    document.body.classList.remove('christmas-theme');
+    document.body.classList.add('underwater-theme');
+    const colorCircles = document.querySelectorAll('.color-circle');
+    colorCircles.forEach((circle, index) => {
+        circle.style.backgroundColor = underwaterColors[index % underwaterColors.length];
+        circle.dataset.color = underwaterColors[index % underwaterColors.length];
+    });
+    handleThemeButtonClick(document.getElementById('underwater-theme'));
+});
 
 const underwaterColors = [
     'rgb(0, 51, 102)', // Dark Blue
@@ -345,29 +363,3 @@ const underwaterColors = [
     'rgb(255, 165, 0)', // Orange
     'rgb(255, 255, 0)'  // Yellow
 ];
-
-document.getElementById('underwater-theme').addEventListener('click', () => {
-    document.body.classList.remove('light-mode');
-    document.body.classList.remove('dark-mode');
-    document.body.classList.remove('christmas-theme');
-    document.body.classList.add('underwater-theme');
-    const colorCircles = document.querySelectorAll('.color-circle');
-    colorCircles.forEach((circle, index) => {
-        circle.style.backgroundColor = underwaterColors[index % underwaterColors.length];
-        circle.dataset.color = underwaterColors[index % underwaterColors.length];
-    });
-    handleThemeButtonClick(document.getElementById('underwater-theme'));
-});
-
-document.getElementById('underwater-theme').addEventListener('click', () => {
-    document.body.classList.remove('light-mode');
-    document.body.classList.remove('dark-mode');
-    document.body.classList.remove('christmas-theme');
-    document.body.classList.add('underwater-theme');
-    const colorCircles = document.querySelectorAll('.color-circle');
-    colorCircles.forEach((circle, index) => {
-        circle.style.backgroundColor = underwaterColors[index % underwaterColors.length];
-        circle.dataset.color = underwaterColors[index % underwaterColors.length];
-    });
-    handleThemeButtonClick(document.getElementById('underwater-theme'));
-});

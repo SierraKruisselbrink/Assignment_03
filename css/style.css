@@ -113,7 +113,7 @@ body.dark-mode canvas {
 
 /* Christmas theme background image was genereated by ChatGPT*/
 body.christmas-theme {
-    background: url('../images/background_15.webp') no-repeat center center;
+    background: url('../images/christmas.webp') no-repeat center center;
     background-size: cover;
 
 }
@@ -148,7 +148,7 @@ body.dark-mode .color-palette-container {
 }
 
 body.underwater-theme {
-    background: url('../images/Ocean_01-Tx-2UdhdZ-transformed.png') no-repeat center center;
+    background: url('../images/ocean.png') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
 }

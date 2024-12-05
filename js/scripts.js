@@ -52,6 +52,8 @@ window.addEventListener('resize', resizeCanvas);
 let currentBrush = new Brush('line', 10, '#000000');
 let isDrawing = false;
 
+let previousBrushColor = currentBrush.color;
+
 // Get UI elements
 const brushSizeValue = document.getElementById('brush-size-value');
 const colorCircles = document.querySelectorAll('.color-circle');
@@ -155,15 +157,14 @@ colorCircles.forEach(circle => {
 
 // Toggle between brushes
 lineBrushButton.addEventListener('click', () => {
-    handleButtonClick(this);
-    currentBrush = new Brush('line', currentBrush.size, currentBrush.color);
+    handleButtonClick(lineBrushButton);
+    currentBrush = new Brush('line', currentBrush.size, previousBrushColor);
 });
 
 circleBrushButton.addEventListener('click', () => {
-    handleButtonClick(this);
-    currentBrush = new Brush('circle', currentBrush.size, currentBrush.color);
+    handleButtonClick(circleBrushButton);
+    currentBrush = new Brush('circle', currentBrush.size, previousBrushColor);
 });
-
 
 
 // Start drawing when mouse is pressed down
@@ -199,6 +200,7 @@ clearCanvasButton.addEventListener("click", () => {
 //Eraser Button
 eraserBrushButton.addEventListener('click', () => {
     handleButtonClick(eraserBrushButton);
+    previousBrushColor = currentBrush.color; // Store the current brush color
     currentBrush = new Brush('eraser', currentBrush.size, '#FFFFFF'); // Assuming white background
 });
 

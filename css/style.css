@@ -110,11 +110,12 @@ body.dark-mode canvas {
 .active {
     background-color: #5EA2A7;
 }
+
 /* Christmas theme background image was genereated by ChatGPT*/
 body.christmas-theme {
     background: url('../images/background_15.webp') no-repeat center center;
     background-size: cover;
-   
+
 }
 
 body.christmas-theme .color-palette-container {
@@ -135,7 +136,7 @@ body.christmas-theme .color-palette-container {
 
 body.dark-mode .color-palette-container {
     background-color: rgb(35, 35, 35);
-    color: white; 
+    color: white;
 }
 
 .themes {
@@ -154,7 +155,30 @@ body.underwater-theme {
 
 /* Underwater theme color palette */
 body.underwater-theme .color-palette-container {
-    background-color: rgba(0, 0, 128, 0.5); /* Semi-transparent dark blue */
+    background-color: rgb(59, 59, 59);
+    /* Semi-transparent dark blue */
     padding: 10px;
     border-radius: 5px;
+}
+
+footer {
+    font-size: 10px;
+    /* The footer should be in line one element to the right of the next */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0px;
+    background-color: #f1f1f1;
+    border-top: 1px solid #e5e5e5;
+
+
+
+}
+
+.footer a:hover {
+    text-decoration: underline;
 }
